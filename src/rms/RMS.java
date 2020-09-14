@@ -5,8 +5,8 @@
  */
 package rms;
 
-import rms.screens.Login;
 import javax.swing.*;
+import rms.screens.Login;
 
 /**
  *
@@ -18,17 +18,17 @@ public class RMS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         SwingUtilities.invokeLater(new Runnable(){
-        
+
             @Override
             public void run(){
-            
+
                 Login loginForm = new Login();
                 loginForm.setVisible(true);
-                
+
             }
-            
+
         });
         
     }

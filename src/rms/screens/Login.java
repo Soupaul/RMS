@@ -20,6 +20,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        setTitle("RMS Login");
         setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setResizable(false);
         jPanel1.requestFocusInWindow();
