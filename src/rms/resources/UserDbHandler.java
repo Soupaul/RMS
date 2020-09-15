@@ -1,18 +1,15 @@
 package rms.resources;
 
 import java.sql.*;
+import rms.StringConstants;
 
 public class UserDbHandler {
-
-    private final String DB_URL = "jdbc:mysql://localhost:3306/rms?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
-    private final String USER = "root";
-    private final String PASS = "007hrit@mysql";
 
     public void registerStaff(String name,String password,int age,double salary){
 
         try(
 
-                Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                Connection conn = DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);
                 Statement stmt = conn.createStatement();
 
         ){
@@ -30,11 +27,13 @@ public class UserDbHandler {
 
     }
 
-    public void loginStaff(String name,String password){
+    public boolean loginStaff(String name,String password){
 
+        boolean status = false;
+        
         try(
 
-                Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                Connection conn = DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);
                 Statement stmt = conn.createStatement();
 
         ){
@@ -48,14 +47,14 @@ public class UserDbHandler {
             String pass = Utils.encryptPassword(password,dbSalt);
 
             if(dbPass.equals(pass))
-                System.out.println("Login successful");
-            else
-                System.out.println("Login unsuccessful");
+                status = true;
 
         }
         catch(SQLException ex){
             ex.printStackTrace();
         }
+        
+        return status;
 
     }
 
@@ -63,7 +62,7 @@ public class UserDbHandler {
 
         try(
 
-                Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                Connection conn = DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);
                 Statement stmt = conn.createStatement();
 
         ){
@@ -83,7 +82,7 @@ public class UserDbHandler {
 
         try(
 
-                Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                Connection conn = DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);
                 Statement stmt = conn.createStatement();
 
         ){

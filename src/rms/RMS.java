@@ -5,7 +5,11 @@
  */
 package rms;
 
+import java.util.ArrayList;
 import javax.swing.*;
+import rms.models.Order;
+import rms.resources.OrdersDbHandler;
+import rms.resources.Utils;
 import rms.screens.Login;
 
 /**
@@ -18,18 +22,27 @@ public class RMS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        SwingUtilities.invokeLater(new Runnable(){
-
-            @Override
-            public void run(){
-
-                Login loginForm = new Login();
-                loginForm.setVisible(true);
-
-            }
-
-        });
+        
+        ArrayList<Order> orders = Utils.arrangeOrders(new OrdersDbHandler().getOrders());
+        for(Order order : orders){
+        
+            order.displayDetails();
+            System.out.println("Priority: " + order.getPriority());
+            System.out.println("Total: $" + order.getTotal());
+            
+        }
+        
+//        SwingUtilities.invokeLater(new Runnable(){
+//
+//            @Override
+//            public void run(){
+//
+//                Login loginForm = new Login();
+//                loginForm.setVisible(true);
+//
+//            }
+//
+//        });
         
     }
     

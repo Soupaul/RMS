@@ -3,12 +3,9 @@ package rms.resources;
 import rms.models.MenuItem;
 
 import java.sql.*;
+import rms.StringConstants;
 
 public class MenuDbHandler {
-
-    private final String DB_URL = "jdbc:mysql://localhost:3306/rms?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
-    private final String USER = "root";
-    private final String PASS = "007hrit@mysql";
 
     public MenuItem getMenuItem(int id, int qty){
 
@@ -16,16 +13,16 @@ public class MenuDbHandler {
 
         try(
 
-                Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                Connection conn = DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);
                 Statement stmt = conn.createStatement();
 
         ){
 
-            String sqlSelect = "SELECT name,price from menu WHERE id =" + id;
+            String sqlSelect = "SELECT name,price,tpp,nppt from menu WHERE id =" + id;
             ResultSet rSet = stmt.executeQuery(sqlSelect);
 
             rSet.next();
-            item = new MenuItem(rSet.getString("name"),rSet.getDouble("price"),id,qty);
+            item = new MenuItem(rSet.getString("name"),rSet.getDouble("price"),rSet.getInt("nppt"),rSet.getInt("tpp"),id,qty);
 
         }
         catch(SQLException ex){
@@ -40,7 +37,7 @@ public class MenuDbHandler {
 
         try(
 
-                Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                Connection conn = DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);
                 Statement stmt = conn.createStatement();
 
         ){
@@ -60,19 +57,21 @@ public class MenuDbHandler {
 
         try(
 
-                Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                Connection conn = DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);
                 Statement stmt = conn.createStatement();
 
         ){
 
-            String strSelect = "SELECT name,price FROM menu";
+            String strSelect = "SELECT name,price,tpp,nppt FROM menu";
             ResultSet rSet = stmt.executeQuery(strSelect);
 
-            System.out.printf("%-50s%-5s\n","Name","Price");
+            System.out.printf("%-50s%-10s%-5s%-5s\n","Name","Price","TPP","NPPT");
             while(rSet.next()) {
                 String name = rSet.getString("name");
                 double price = rSet.getDouble("price");
-                System.out.printf("%-50s%-5.2f\n",name,price);
+                int tpp = rSet.getInt("tpp");
+                int nppt = rSet.getInt("nppt");
+                System.out.printf("%-50s%-10.2f%-5d%-5d\n",name,price,tpp,nppt);
             }
 
         }

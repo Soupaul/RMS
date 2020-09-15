@@ -4,6 +4,9 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+import rms.models.Order;
 
 public class Utils {
 
@@ -47,6 +50,28 @@ public class Utils {
 
         return genSalt;
 
+    }
+    
+    public static ArrayList arrangeOrders(ArrayList<Order> orders){
+    
+        ArrayList<Order> arrangedOrders = new ArrayList();
+     
+        PriorityQueue<Order> pq = new PriorityQueue<Order>(10,new OrderComparator());
+        
+        for(Order order : orders){
+            
+            pq.add(order);
+        
+        }
+        
+        while(!pq.isEmpty()){
+        
+            arrangedOrders.add(pq.poll());
+            
+        }
+      
+        return arrangedOrders;
+    
     }
 
 }
