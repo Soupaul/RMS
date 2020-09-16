@@ -31,7 +31,9 @@ public class Order {
         processOrder(details);
 
     }
-
+    
+    public int getId(){ return id; }
+    
     public ArrayList getItems(){
 
         return items;
@@ -49,7 +51,7 @@ public class Order {
         }
 
     }
-
+    
     public double getTotal(){
 
         double total = 0.0;

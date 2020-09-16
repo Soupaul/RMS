@@ -6,7 +6,7 @@ public class Staff {
     private int age;
     private double salary;
 
-    public Staff(String username, String password, int age, double salary) {
+    public Staff(String username,int age, double salary) {
         this.name = username;
         this.age = age;
         this.salary = salary;

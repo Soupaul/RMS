@@ -3,6 +3,7 @@ package rms.resources;
 import rms.models.MenuItem;
 
 import java.sql.*;
+import java.util.ArrayList;
 import rms.StringConstants;
 
 public class MenuDbHandler {
@@ -53,6 +54,38 @@ public class MenuDbHandler {
 
     }
 
+    public ArrayList getMenu(){
+    
+        ArrayList<MenuItem> menu = new ArrayList();
+        
+        try(
+
+                Connection conn = DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);
+                Statement stmt = conn.createStatement();
+
+        ){
+
+            String strSelect = "SELECT id,name,price,tpp,nppt FROM menu";
+            ResultSet rSet = stmt.executeQuery(strSelect);
+
+            while(rSet.next()) {
+                int id = rSet.getInt("id");
+                String name = rSet.getString("name");
+                double price = rSet.getDouble("price");
+                int tpp = rSet.getInt("tpp");
+                int nppt = rSet.getInt("nppt");
+                menu.add(new MenuItem(name,price,nppt,tpp,id,0));
+            }
+
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        
+        return menu;
+    
+    }
+    
     public void displayMenu(){
 
         try(

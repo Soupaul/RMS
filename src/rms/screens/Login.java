@@ -195,8 +195,9 @@ public class Login extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         boolean res = new UserDbHandler().loginStaff(usernameField.getText(), String.valueOf(passwordField.getPassword()));
         if(res){
-            usernameField.setText("");
-            passwordField.setText("");
+            this.dispose();
+            App app = new App(usernameField.getText());
+            app.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

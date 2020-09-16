@@ -1,7 +1,9 @@
 package rms.resources;
 
 import java.sql.*;
+import java.util.ArrayList;
 import rms.StringConstants;
+import rms.models.Staff;
 
 public class UserDbHandler {
 
@@ -76,6 +78,38 @@ public class UserDbHandler {
             ex.printStackTrace();
         }
 
+    }
+    
+    public ArrayList getStaffList(){
+        
+        ArrayList<Staff> staffList = new ArrayList();
+        
+        try(
+
+                Connection conn = DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);
+                Statement stmt = conn.createStatement();
+
+        ){
+
+            String strSelect = "SELECT name,age,salary FROM staff";
+            ResultSet rSet = stmt.executeQuery(strSelect);
+
+            while(rSet.next()) {
+                String name = rSet.getString("name");
+                int age = rSet.getInt("age");
+                double salary = rSet.getDouble("salary");
+                
+                staffList.add(new Staff(name,age,salary));
+                
+            }
+
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        
+        return staffList;
+    
     }
 
     public void displayStaffInfo(){
