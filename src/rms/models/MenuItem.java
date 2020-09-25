@@ -22,6 +22,8 @@ public class MenuItem {
         return name;
     }
 
+    public int getId(){ return id; }
+    
     public int getQty(){ return qty; }
     public void setQty(int qty){ this.qty = qty; }
 

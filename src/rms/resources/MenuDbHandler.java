@@ -33,6 +33,32 @@ public class MenuDbHandler {
         return item;
 
     }
+    
+    public MenuItem getMenuItem(String name,int qty){
+    
+        MenuItem item = null;
+        
+        try(
+
+                Connection conn = DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);
+                Statement stmt = conn.createStatement();
+
+        ){
+
+            String sqlSelect = "SELECT id,price,tpp,nppt from menu WHERE name = '" + name + "'";
+            ResultSet rSet = stmt.executeQuery(sqlSelect);
+
+            rSet.next();
+            item = new MenuItem(name,rSet.getDouble("price"),rSet.getInt("nppt"),rSet.getInt("tpp"),rSet.getInt("id"),qty);
+
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return item;
+        
+    }
 
     public void addMenuItem(String name,double price){
 

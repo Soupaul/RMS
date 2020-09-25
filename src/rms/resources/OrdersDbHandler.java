@@ -29,6 +29,26 @@ public class OrdersDbHandler {
         }
 
     }
+    
+    public void removeOrder(int id){
+    
+        try(
+
+                Connection conn = DriverManager.getConnection(StringConstants.DB_URL,StringConstants.USER,StringConstants.PASS);
+                Statement stmt = conn.createStatement();
+
+        ){
+
+            String sqlDelete = "DELETE FROM orders WHERE id = " + id;
+            int countDeleted = stmt.executeUpdate(sqlDelete);
+            if(countDeleted != 0) System.out.println("Order removed");
+
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    
+    }
 
     public ArrayList getOrders(){
 

@@ -68,10 +68,10 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rms/assets/restaurant.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 32)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Restaurant Management System");
+        jLabel3.setText("Rate-a-touille");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

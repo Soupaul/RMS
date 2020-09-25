@@ -25,7 +25,7 @@ public class App extends javax.swing.JFrame {
     
     private final String ORDERS_PANEL = "op";
     private final String STAFF_PANEL = "sp";
-    
+    private final String MENU_PANEL = "mp";
     
     public App(String user) {
         initComponents();
@@ -34,8 +34,10 @@ public class App extends javax.swing.JFrame {
         setTitle("RMS App");
         setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setResizable(false);
+        onSelected(ordersSidePanel);
         cardsPanel.add(new StaffPanel(),STAFF_PANEL);
         cardsPanel.add(new OrdersPanel(),ORDERS_PANEL);
+        cardsPanel.add(new MenuPanel(),MENU_PANEL);
         cl = (CardLayout)cardsPanel.getLayout();
         cl.show(cardsPanel, ORDERS_PANEL);
         jPanel1.requestFocusInWindow();
@@ -63,6 +65,9 @@ public class App extends javax.swing.JFrame {
         staffSidePanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        menuSidePanel = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         cardsPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -94,11 +99,11 @@ public class App extends javax.swing.JFrame {
         ordersSidePanelLayout.setHorizontalGroup(
             ordersSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ordersSidePanelLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel6)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         ordersSidePanelLayout.setVerticalGroup(
             ordersSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,11 +136,11 @@ public class App extends javax.swing.JFrame {
         logoutSidePanelLayout.setHorizontalGroup(
             logoutSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoutSidePanelLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel7)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         logoutSidePanelLayout.setVerticalGroup(
             logoutSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,9 +179,9 @@ public class App extends javax.swing.JFrame {
         staffSidePanelLayout.setHorizontalGroup(
             staffSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, staffSidePanelLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel5)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -190,19 +195,61 @@ public class App extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        menuSidePanel.setBackground(new java.awt.Color(0, 153, 51));
+        menuSidePanel.setPreferredSize(new java.awt.Dimension(213, 65));
+        menuSidePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSidePanelMouseClicked(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Calibri Light", 0, 30)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Menu");
+        jLabel14.setToolTipText("");
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rms/assets/menu.png"))); // NOI18N
+
+        javax.swing.GroupLayout menuSidePanelLayout = new javax.swing.GroupLayout(menuSidePanel);
+        menuSidePanel.setLayout(menuSidePanelLayout);
+        menuSidePanelLayout.setHorizontalGroup(
+            menuSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuSidePanelLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel15)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel14)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        menuSidePanelLayout.setVerticalGroup(
+            menuSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuSidePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(menuSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ordersSidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
-            .addComponent(logoutSidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(staffSidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(logoutSidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(staffSidePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                        .addComponent(ordersSidePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                        .addComponent(menuSidePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,6 +262,8 @@ public class App extends javax.swing.JFrame {
                 .addComponent(staffSidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ordersSidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(menuSidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoutSidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -262,6 +311,7 @@ public class App extends javax.swing.JFrame {
         onSelected(ordersSidePanel);
         onUnselected(logoutSidePanel);
         onUnselected(staffSidePanel);
+        onUnselected(menuSidePanel);
         cl.show(cardsPanel, ORDERS_PANEL);
         
     }//GEN-LAST:event_ordersSidePanelMouseClicked
@@ -271,6 +321,7 @@ public class App extends javax.swing.JFrame {
         onSelected(logoutSidePanel);
         onUnselected(ordersSidePanel);
         onUnselected(staffSidePanel);
+        onUnselected(menuSidePanel);
         this.dispose();
         Login login = new Login();
         login.setVisible(true);
@@ -281,13 +332,25 @@ public class App extends javax.swing.JFrame {
         onSelected(staffSidePanel);
         onUnselected(logoutSidePanel);
         onUnselected(ordersSidePanel);
+        onUnselected(menuSidePanel);
         cl.show(cardsPanel, STAFF_PANEL);
     }//GEN-LAST:event_staffSidePanelMouseClicked
+
+    private void menuSidePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSidePanelMouseClicked
+        // TODO add your handling code here:
+        onSelected(menuSidePanel);
+        onUnselected(ordersSidePanel);
+        onUnselected(logoutSidePanel);
+        onUnselected(staffSidePanel);
+        cl.show(cardsPanel, MENU_PANEL);
+    }//GEN-LAST:event_menuSidePanelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel cardsPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -297,6 +360,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel logoutSidePanel;
+    private javax.swing.JPanel menuSidePanel;
     private javax.swing.JPanel ordersSidePanel;
     private javax.swing.JPanel staffSidePanel;
     private javax.swing.JLabel userLabel;

@@ -32,7 +32,17 @@ public class OrdersPanel extends javax.swing.JPanel {
     public OrdersPanel() {
         initComponents();
         ordersDb = new OrdersDbHandler();
+        orders = Utils.arrangeOrders(ordersDb.getOrders());
+        
+        initListModel();
+        initTableModel();
+        
+    }
+    
+    private void initListModel(){
+        
         listModel = new DefaultListModel();
+    
         orders = Utils.arrangeOrders(ordersDb.getOrders());
         
         for(Order order : orders){
@@ -42,8 +52,7 @@ public class OrdersPanel extends javax.swing.JPanel {
         }
         
         orderList.setModel(listModel);
-        initTableModel();
-        
+    
     }
     
     private void initTableModel(){
@@ -68,17 +77,19 @@ public class OrdersPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         orderList = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
-        showReceipt = new javax.swing.JButton();
+        showDetails = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         totalLabel = new javax.swing.JLabel();
+        removeOrder = new javax.swing.JButton();
+        refresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        orderList.setBackground(new java.awt.Color(204, 204, 204));
+        orderList.setBackground(new java.awt.Color(51, 51, 51));
         orderList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        orderList.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        orderList.setForeground(new java.awt.Color(0, 0, 0));
+        orderList.setFont(new java.awt.Font("Calibri Light", 0, 30)); // NOI18N
+        orderList.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(orderList);
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 40)); // NOI18N
@@ -86,14 +97,14 @@ public class OrdersPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Orders");
 
-        showReceipt.setBackground(new java.awt.Color(255, 153, 0));
-        showReceipt.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        showReceipt.setForeground(new java.awt.Color(255, 255, 255));
-        showReceipt.setText("Show Details");
-        showReceipt.setBorder(null);
-        showReceipt.addActionListener(new java.awt.event.ActionListener() {
+        showDetails.setBackground(new java.awt.Color(255, 153, 0));
+        showDetails.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        showDetails.setForeground(new java.awt.Color(255, 255, 255));
+        showDetails.setText("Show Details");
+        showDetails.setBorder(null);
+        showDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showReceiptActionPerformed(evt);
+                showDetailsActionPerformed(evt);
             }
         });
 
@@ -107,6 +118,29 @@ public class OrdersPanel extends javax.swing.JPanel {
         totalLabel.setForeground(new java.awt.Color(0, 0, 0));
         totalLabel.setText("Total:");
 
+        removeOrder.setBackground(new java.awt.Color(255, 153, 0));
+        removeOrder.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        removeOrder.setForeground(new java.awt.Color(255, 255, 255));
+        removeOrder.setText("X");
+        removeOrder.setBorder(null);
+        removeOrder.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        removeOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeOrderActionPerformed(evt);
+            }
+        });
+
+        refresh.setBackground(new java.awt.Color(255, 153, 0));
+        refresh.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        refresh.setForeground(new java.awt.Color(255, 255, 255));
+        refresh.setText("Refresh");
+        refresh.setBorder(null);
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,14 +150,18 @@ public class OrdersPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 878, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(showReceipt, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(showDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addGap(18, 18, 18)
+                        .addComponent(removeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -132,18 +170,22 @@ public class OrdersPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeOrder))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(showReceipt, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(showDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                        .addComponent(refresh, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
                     .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void showReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showReceiptActionPerformed
+    private void showDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDetailsActionPerformed
         // TODO add your handling code here:
         if(orderList.getSelectedIndex() != -1){
             
@@ -162,16 +204,34 @@ public class OrdersPanel extends javax.swing.JPanel {
             totalLabel.setText("Total: $" + String.format("%5.2f",order.getTotal()));
         
         }
-    }//GEN-LAST:event_showReceiptActionPerformed
+    }//GEN-LAST:event_showDetailsActionPerformed
 
+    private void removeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeOrderActionPerformed
+        // TODO add your handling code here:
+        if(orderList.getSelectedIndex() != -1){
+        
+            ordersDb.removeOrder(orders.get(orderList.getSelectedIndex()).getId());
+            orders.remove(orderList.getSelectedIndex());
+            listModel.remove(orderList.getSelectedIndex());
+            
+        }
+    }//GEN-LAST:event_removeOrderActionPerformed
 
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        // TODO add your handling code here:
+        initListModel();
+    }//GEN-LAST:event_refreshActionPerformed
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JList<String> orderList;
-    private javax.swing.JButton showReceipt;
+    private javax.swing.JButton refresh;
+    private javax.swing.JButton removeOrder;
+    private javax.swing.JButton showDetails;
     private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }
