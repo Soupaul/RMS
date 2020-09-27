@@ -228,6 +228,7 @@ public class MenuPanel extends javax.swing.JPanel {
         ordersDb.addOrder(date,orderItems);
         
         listModel.clear();
+        qtyField.setText("");
         
     }//GEN-LAST:event_placeOrderActionPerformed
 
