@@ -32,7 +32,7 @@ public class OrdersPanel extends javax.swing.JPanel {
     public OrdersPanel() {
         initComponents();
         ordersDb = new OrdersDbHandler();
-        orders = Utils.arrangeOrders(ordersDb.getOrders());
+//        orders = Utils.arrangeOrders(ordersDb.getOrders());
         
         initListModel();
         initTableModel();

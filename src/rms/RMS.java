@@ -7,6 +7,7 @@ package rms;
 
 import javax.swing.*;
 import rms.resources.UserDbHandler;
+import rms.screens.App_Simple;
 import rms.screens.Login;
 
 /**
@@ -21,6 +22,14 @@ public class RMS {
     public static void main(String[] args) {
         
         SwingUtilities.invokeLater(new Runnable(){
+            
+//            @Override
+//            public void run(){
+//            
+//                App_Simple app = new App_Simple();
+//                app.setVisible(true);
+//                
+//            }
 
             @Override
             public void run(){
