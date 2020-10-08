@@ -6,8 +6,6 @@
 package rms;
 
 import javax.swing.*;
-import rms.resources.UserDbHandler;
-import rms.screens.App_Simple;
 import rms.screens.Login;
 
 /**

@@ -47,12 +47,12 @@ public class App_Simple extends javax.swing.JFrame {
         
         tableModel1 = new DefaultTableModel();
         listModel1 = new DefaultListModel();
-        jList1.setModel(listModel1);
+        orderItemsList.setModel(listModel1);
         
         tableModel1.addColumn("NAME");
         tableModel1.addColumn("PRICE");
         
-        jTable1.setModel(tableModel1);
+        menuTable.setModel(tableModel1);
         
         ArrayList<MenuItem> items = menuDb.getMenu();
         
@@ -62,12 +62,12 @@ public class App_Simple extends javax.swing.JFrame {
         
         }
         
-        initListModel();
-        initTableModel();
+        initOrdersListModel();
+        initDetailsTableModel();
         
     }
     
-    private void initListModel(){
+    private void initOrdersListModel(){
         
         listModel2 = new DefaultListModel();
     
@@ -79,14 +79,14 @@ public class App_Simple extends javax.swing.JFrame {
             
         }
         
-        jList2.setModel(listModel2);
+        ordersList.setModel(listModel2);
     
     }
     
-    private void initTableModel(){
+    private void initDetailsTableModel(){
         
         tableModel2 = new DefaultTableModel();
-        jTable2.setModel(tableModel2);
+        detailsTable.setModel(tableModel2);
         tableModel2.addColumn("NAME");
         tableModel2.addColumn("PRICE");
         tableModel2.addColumn("QTY");
@@ -105,10 +105,10 @@ public class App_Simple extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        menuTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        orderItemsList = new javax.swing.JList<>();
         addMenuItemBtn = new javax.swing.JButton();
         removeMenuItemBtn = new javax.swing.JButton();
         placeOrderBtn = new javax.swing.JButton();
@@ -116,13 +116,13 @@ public class App_Simple extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        ordersList = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
         removeOrderBtn = new javax.swing.JButton();
         refreshBtn = new javax.swing.JButton();
         showDetailsBtn = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        detailsTable = new javax.swing.JTable();
         totalLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -130,18 +130,16 @@ public class App_Simple extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 32)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Rate-a-touille");
 
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(menuTable);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Menu");
 
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(orderItemsList);
 
         addMenuItemBtn.setText("Add");
         addMenuItemBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -167,13 +165,11 @@ public class App_Simple extends javax.swing.JFrame {
         qtyField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Qty:");
 
-        jScrollPane3.setViewportView(jList2);
+        jScrollPane3.setViewportView(ordersList);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Orders");
 
@@ -198,10 +194,9 @@ public class App_Simple extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane4.setViewportView(jTable2);
+        jScrollPane4.setViewportView(detailsTable);
 
         totalLabel.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        totalLabel.setForeground(new java.awt.Color(0, 0, 0));
         totalLabel.setText("Total:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -229,7 +224,7 @@ public class App_Simple extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -255,14 +250,14 @@ public class App_Simple extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(placeOrderBtn)
                     .addComponent(qtyField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,7 +268,7 @@ public class App_Simple extends javax.swing.JFrame {
                     .addComponent(removeOrderBtn)
                     .addComponent(refreshBtn)
                     .addComponent(totalLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -289,6 +284,42 @@ public class App_Simple extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void showDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDetailsBtnActionPerformed
+        // TODO add your handling code here:
+        if(ordersList.getSelectedIndex() != -1){
+
+            initDetailsTableModel();
+
+            Order order = orders.get(ordersList.getSelectedIndex());
+
+            for(MenuItem item : (ArrayList<MenuItem>)order.getItems()){
+
+                String row[] = {item.getName(),String.valueOf(item.getPrice()),String.valueOf(item.getQty())};
+                tableModel2.addRow(row);
+
+            }
+
+            totalLabel.setText("Total: $" + String.format("%5.2f",order.getTotal()));
+
+        }
+    }//GEN-LAST:event_showDetailsBtnActionPerformed
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        // TODO add your handling code here:
+        initOrdersListModel();
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
+    private void removeOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeOrderBtnActionPerformed
+        // TODO add your handling code here:
+        if(ordersList.getSelectedIndex() != -1){
+
+            ordersDb.removeOrder(orders.get(ordersList.getSelectedIndex()).getId());
+            orders.remove(ordersList.getSelectedIndex());
+            listModel2.remove(ordersList.getSelectedIndex());
+
+        }
+    }//GEN-LAST:event_removeOrderBtnActionPerformed
 
     private void placeOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderBtnActionPerformed
         // TODO add your handling code here:
@@ -311,79 +342,42 @@ public class App_Simple extends javax.swing.JFrame {
 
     private void removeMenuItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMenuItemBtnActionPerformed
         // TODO add your handling code here:
-        if(jList1.getSelectedIndex() != -1){
+        if(orderItemsList.getSelectedIndex() != -1){
 
-            currentOrderItems.remove(jList1.getSelectedIndex());
-            listModel1.remove(jList1.getSelectedIndex());
+            currentOrderItems.remove(orderItemsList.getSelectedIndex());
+            listModel1.remove(orderItemsList.getSelectedIndex());
 
         }
     }//GEN-LAST:event_removeMenuItemBtnActionPerformed
 
     private void addMenuItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMenuItemBtnActionPerformed
         // TODO add your handling code here:
-        if(jTable1.getSelectedRow() != -1 && !listModel1.contains((String) jTable1.getValueAt(jTable1.getSelectedRow(),0)) && qtyField.getText().length() != 0){
+        if(menuTable.getSelectedRow() != -1 && !listModel1.contains((String) menuTable.getValueAt(menuTable.getSelectedRow(),0)) && qtyField.getText().length() != 0){
 
-            String name = (String) jTable1.getValueAt(jTable1.getSelectedRow(),0);
+            String name = (String) menuTable.getValueAt(menuTable.getSelectedRow(),0);
             currentOrderItems.add(menuDb.getMenuItem(name, Integer.parseInt(qtyField.getText())));
             listModel1.addElement(name);
 
         }
     }//GEN-LAST:event_addMenuItemBtnActionPerformed
 
-    private void showDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showDetailsBtnActionPerformed
-        // TODO add your handling code here:
-        if(jList2.getSelectedIndex() != -1){
-            
-            initTableModel();
-            
-            Order order = orders.get(jList2.getSelectedIndex());
-            
-            
-            for(MenuItem item : (ArrayList<MenuItem>)order.getItems()){
-            
-                String row[] = {item.getName(),String.valueOf(item.getPrice()),String.valueOf(item.getQty())};
-                tableModel2.addRow(row);
-                
-            }
-            
-            totalLabel.setText("Total: $" + String.format("%5.2f",order.getTotal()));
-        
-        }
-    }//GEN-LAST:event_showDetailsBtnActionPerformed
-
-    private void removeOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeOrderBtnActionPerformed
-        // TODO add your handling code here:
-        if(jList2.getSelectedIndex() != -1){
-        
-            ordersDb.removeOrder(orders.get(jList2.getSelectedIndex()).getId());
-            orders.remove(jList2.getSelectedIndex());
-            listModel2.remove(jList2.getSelectedIndex());
-            
-        }
-    }//GEN-LAST:event_removeOrderBtnActionPerformed
-
-    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-        // TODO add your handling code here:
-        initListModel();
-    }//GEN-LAST:event_refreshBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMenuItemBtn;
+    private javax.swing.JTable detailsTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable menuTable;
+    private javax.swing.JList<String> orderItemsList;
+    private javax.swing.JList<String> ordersList;
     private javax.swing.JButton placeOrderBtn;
     private javax.swing.JTextField qtyField;
     private javax.swing.JButton refreshBtn;
